@@ -19,7 +19,7 @@ class UsersController {
       const user = await users.findOne({ email });
 
       if (user) {
-        response.status(400).json({ error: 'Already exist' });
+        return response.status(400).json({ error: 'Already exist' });
       }
       const hashedPassword = sha1(password);
       const result = await users.insertOne({ email, password: hashedPassword });
